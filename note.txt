@@ -1,0 +1,30 @@
+API
+---
+  - laravel project download
+
+  - create category resource
+    - make:model Category -m
+    - make:controller Api/CategoryController --api (5 methods)
+
+  - create post resource
+    - make:model Post -m
+    - make:controller Api/PostController --api (5 methods)
+
+  - register routes (for api)
+    - routes/api.php
+
+  - Running API
+    - localhost:8000/api/
+
+  - Return Data (json)
+    - enduser see your resource cols
+    - using resource (http status code)
+
+  - API Resource
+    - transformation layer
+
+  - postman extension 
+    - data crud
+
+
+
