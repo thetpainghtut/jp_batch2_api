@@ -9,6 +9,10 @@ use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
+    public function __construct($value='')
+    {
+        $this->middleware('auth:api')->only('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -123,6 +127,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        return new PostResource($post);
+    }
+
+    public function filterByCategory($category_id)
+    {
+        $posts = Post::where('category_id',$category_id)->get();
+
+        return response()->json([
+            'status' => 'ok',
+            'totalResults' => count($posts),
+            'posts' => PostResource::collection($posts)
+        ]);
     }
 }

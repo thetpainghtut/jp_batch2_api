@@ -26,5 +26,39 @@ API
   - postman extension 
     - data crud
 
+Authentication (token)
+----------------------
+  - REST API (stateless)
+  - Frontend (generate token / pass)
+    - generate token
+      - username(email)/password/client_id/client_secret/grant_type
+      - type (Bearer) / Expiretime (timestamp) / access_token / refresh_token
+
+  
+  - Install Passport (3 command)
+    - User Model (please generate token for each user)
+    - App/Provider/AuthServiceProvider (register passport route)
+    - config/auth.php (guards => api - passport)
+
+    - create seeder class (UserTableSeeder - create a user)
+    - seed UserTableSeeder
+
+    - GET (http://localhost:8000/oauth/token) -> generate access_token
+      - username(email)/password/client_id/client_secret/grant_type
+      - type (Bearer) / Expiretime (timestamp) / access_token / refresh_token
+
+    - Api/PostController (__construct method)
+      - $this->middleware('auth:api')->only('index');
+
+    - GET (http://localhost:8000/api/v1/posts) -> unauthenticated
+
+    - Header 
+      - (Accept => application/json)
+      - (Authorization => Bearer access_token)
+
+
+
+
+
 
 

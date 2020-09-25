@@ -18,12 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->group(function () { // http://localhost:8000/api/v1/
 
   Route::apiresource('categories','Api\CategoryController');
 
   Route::apiresource('posts','Api\PostController');
 
+  Route::get('postsByCategory/{category_id}','Api\PostController@filterByCategory');
+
 });
-
-
